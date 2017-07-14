@@ -52,10 +52,10 @@ Curl Commands
 
 You should install ./JQ before running these Curl commands.
 To get a new token (user role)
- curl trusted-app:secret@localhost:8080/oauth/token -d "grant_type=password&username=user&password=password"   
+ curl trusted-app:secret@localhost:9080/oauth/token -d "grant_type=password&username=user&password=password"   
 To get a new token (admin role)
- curl trusted-app:secret@localhost:8080/oauth/token -d "grant_type=password&username=admin&password=password"   
+ curl trusted-app:secret@localhost:9080/oauth/token -d "grant_type=password&username=admin&password=password"   
 To get a refresh token
- curl trusted-app:secret@localhost:8080/oauth/token -d "grant_type=access_token&access_tokem=[ACCESS_TOKEN]"  
+ curl trusted-app:secret@localhost:9080/oauth/token -d "grant_type=access_token&access_tokem=[ACCESS_TOKEN]"  
 To access a protected resource
- curl -H "Authorization: Bearer [ACCESS_TOKEN]" localhost:8080/api/** 
+ curl -H "Authorization: Bearer [ACCESS_TOKEN]" localhost:9080/api/** 

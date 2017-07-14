@@ -1,0 +1,75 @@
+info:
+  name: hotel-reservation-server
+  description: Hotel resrvation use case application
+   
+directory: d:\test
+
+server:
+  port: ${PORT:9080}
+spring:
+    profiles:
+        active: dev
+    datasource:
+            dataSourceClassName: org.h2.jdbcx.JdbcDataSource
+            url: jdbc:h2:mem:myDb;DB_CLOSE_DELAY=-1
+            platform: h2
+            databaseName: myDb
+            serverName:
+            username: sa
+            password:
+    h2:
+        console:
+          enabled: true
+          path: /h2
+    jpa:
+        database-platform: org.hibernate.dialect.H2Dialect
+        database: H2
+        openInView: false
+        show_sql: true
+        generate-ddl: true
+        hibernate:
+            ddl-auto: create-drop
+            naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
+        properties:
+            hibernate.cache.use_query_cache: false
+            hibernate.generate_statistics: true
+    rabbitmq:
+        username: guest
+        password: guest
+        host: localhost
+        port: 5672
+    redis:
+      host: localhost
+      port: 6379
+      database: 1
+      hotel:
+        cache-ttl: 1440 # in minutes
+ 
+        
+hotelserver:
+  amqp:
+      exchange: twinsoft.hotelserver.exchange  
+      hotel-queue: twinsoft.hotelserver.hotel.queue
+      hotel-reservation-queue: twinsoft.hotelserver.hotel.reservation.queue 
+      hotel-routing-key: twinsoft.hotelserver.hotel.key 
+      hotel-reservation-routing-key: twinsoft.hotelserver.hotel.reservation.key 
+  security:
+      oauth2:
+        resource:
+          id: oauth2_id
+      client:
+        id: phfrontend
+        secret: phfrontendpassword
+        scope: phdomain
+      keystore:
+        file: mytest.jks
+        alias: mytest
+        storepass: mypass
+        keypass: mypass
+      cors:
+        allow:
+          origin: '*' 
+          methods: 'POST, GET, OPTIONS, DELETE, PUT'
+          headers: 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Origin'
+          credentials: tr
+  
